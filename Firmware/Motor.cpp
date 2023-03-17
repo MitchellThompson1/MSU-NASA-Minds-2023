@@ -1,31 +1,39 @@
 #include "Motor.h"
+#include <Arduino.h>
+
 
 void Motor::sleep() {
-    digitalWrite(p1, LOW);
-    digitalWrite(p2, LOW);
+  digitalWrite(p1, 0);
+  digitalWrite(p2, 0);
 }
 
 void Motor::forward() {
-    digitalWrite(p1, HIGH);
-    digitalWrite(p2, LOW);
+    digitalWrite(p1, 1);
+    digitalWrite(p2, 0);
 }
 
 void Motor::reverse() {
-    digitalWrite(p1, LOW);
-    digitalWrite(p2, HIGH);
+    digitalWrite(p1, 0);
+    digitalWrite(p2, 1);
 }
 
 void Motor::brake() {
-    digitalWrite(p1, HIGH);
-    digitalWrite(p2, HIGH);
+    digitalWrite(p1, 1);
+    digitalWrite(p2, 1);
 }
 
-Motor::Motor(int p1, int p2, string motorID) {
+Motor::Motor(int p1, int p2, int motorID) {
     this->p1 = p1;
     this->p2 = p2;
     this->motorID = motorID;
 }
 
+
+/*
+// ChatGPT suggestion. May be something wrong with my constructor, or default constructor
+Motor::Motor(int p1, int p2, int motorID) : p1(p1), p2(p2), motorID(motorID) {
+}
+*/
 
 // getters and setters
 void Motor::setP1(int p1) {
@@ -48,6 +56,6 @@ int Motor::getP2() {
     return p2;
 }
 
-int getMotorID() {
+int Motor::getMotorID() {
     return motorID;
 }
